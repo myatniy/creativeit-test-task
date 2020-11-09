@@ -101,8 +101,8 @@ export default class App extends React.Component {
                                             <p className="repository"><a href={html_url}>{name}</a></p>
                                             <hr className="under-repository-name" />
                                             <div>
-                                                <span>Создан: {`${ca.getHours()}:${ca.getMinutes()}:${ca.getSeconds()} ${ca.getDay() + 1}.${ca.getMonth() + 1}.${ca.getFullYear()}`}</span>
-                                                <span>Обновлен: {`${ua.getHours()}:${ua.getMinutes()}:${ua.getSeconds()} ${ua.getDay()}.${ua.getMonth()}.${ua.getFullYear()}`}</span>
+                                                <span>Создан: {`${ca.getHours()}:${ca.getMinutes()}:${ca.getSeconds()} ${ca.getDate()}.${ca.getMonth() + 1}.${ca.getFullYear()}`}</span>
+                                                <span>Обновлен: {`${ua.getHours()}:${ua.getMinutes()}:${ua.getSeconds()} ${ua.getDate()}.${ua.getMonth() + 1}.${ua.getFullYear()}`}</span>
                                             </div>
                                         </li>
                                     );
