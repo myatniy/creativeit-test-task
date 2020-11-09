@@ -12,14 +12,23 @@ const Search = (props) => {
         props.onSearchQueryChange(newSearchQuery);
     }
 
+    const onReset = () => {
+        setSearchQuery('');
+        props.onSearchQueryChange('');
+    };
+
+    const button = searchQuery.length > 0 ? <button onClick={onReset}>Reset</button> : null;
+
     return (
-        <input
-            type="text"
-            placeholder="Type to search"
-            className="search"
-            value={searchQuery}
-            onChange={onSearchQueryChange}
-        />
+        <div className="search-container">
+            <input
+                type="text"
+                placeholder="Type to search"
+                value={searchQuery}
+                onChange={onSearchQueryChange}
+            />
+            {button}
+        </div>
     )
 };
 
@@ -82,12 +91,22 @@ export default class App extends React.Component {
                     <ul>
                         {
                             visibleData.map(
-                                ({id, name, created_at, updated_at}) => <li key={id}>
-                                    {name}<br/>
-                                    {created_at}<br/>
-                                    {updated_at}<br/>
-                                    <hr/>
-                                </li>
+                                ({id, name, created_at, updated_at}) => {
+                                    // created_at
+                                    const ca = new Date(Date.parse(created_at));
+                                    // updated_at
+                                    const ua = new Date(Date.parse(updated_at));
+                                    return (
+                                        <li key={id}>
+                                            <p><span className="repository">{name}</span></p>
+                                            <hr className="under-repository-name" />
+                                            <div>
+                                                <span>Создан: {`${ca.getHours()}:${ca.getMinutes()}:${ca.getSeconds()} ${ca.getDay()}.${ca.getMonth()}.${ca.getFullYear()}`}</span>
+                                                <span>Обновлен: {`${ua.getHours()}:${ua.getMinutes()}:${ua.getSeconds()} ${ua.getDay()}.${ua.getMonth()}.${ua.getFullYear()}`}</span>
+                                            </div>
+                                        </li>
+                                    );
+                                }
                             )
                         }
                     </ul>
