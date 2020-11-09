@@ -91,17 +91,17 @@ export default class App extends React.Component {
                     <ul>
                         {
                             visibleData.map(
-                                ({id, name, created_at, updated_at}) => {
+                                ({id, name, created_at, updated_at, html_url}) => {
                                     // created_at
                                     const ca = new Date(Date.parse(created_at));
                                     // updated_at
                                     const ua = new Date(Date.parse(updated_at));
                                     return (
                                         <li key={id}>
-                                            <p><span className="repository">{name}</span></p>
+                                            <p className="repository"><a href={html_url}>{name}</a></p>
                                             <hr className="under-repository-name" />
                                             <div>
-                                                <span>Создан: {`${ca.getHours()}:${ca.getMinutes()}:${ca.getSeconds()} ${ca.getDay()}.${ca.getMonth()}.${ca.getFullYear()}`}</span>
+                                                <span>Создан: {`${ca.getHours()}:${ca.getMinutes()}:${ca.getSeconds()} ${ca.getDay() + 1}.${ca.getMonth() + 1}.${ca.getFullYear()}`}</span>
                                                 <span>Обновлен: {`${ua.getHours()}:${ua.getMinutes()}:${ua.getSeconds()} ${ua.getDay()}.${ua.getMonth()}.${ua.getFullYear()}`}</span>
                                             </div>
                                         </li>
